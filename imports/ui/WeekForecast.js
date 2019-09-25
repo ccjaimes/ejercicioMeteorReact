@@ -14,22 +14,22 @@ class WeekForecast extends Component {
 
     render() {
         return (
-            <div>
-                <div className="row text-center bg-success">
-                    <div className="col-sm">
-                        7 Day Forecast
+            <React.Fragment>
+                <div className="row text-center">
+                    <div className="col">
+                        <h1 className="display-4">Week #{this.props.semana}</h1>
                     </div>
                 </div>
                 <div className="row">
                     {this.renderDays()}
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }
 
-export default withTracker(() => {
+export default withTracker(({semana}) => {
     return {
-        forecast: Forecast.find({}).fetch(),
+        forecast: Forecast.find({ week: semana }).fetch(),
     };
 })(WeekForecast);
